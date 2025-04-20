@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+#define TAMANHO_TABULEIRO 10
+#define TAMANHO_NAVIO 4
+#define NAVIO 3
+#define AGUA 0
+
+int main() {
+    // Criação do tabuleiro 10x10 preenchido com zeros (água)
+    int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {0};
+
+    // Posicionamento do navio vertical (coluna fixa)
+    int x_vertical = 1, y_vertical = 2;
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[x_vertical + i][y_vertical] = NAVIO;
+    }
+
+    // Posicionamento do navio horizontal (linha fixa)
+    int x_horizontal = 5, y_horizontal = 1;
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[x_horizontal][y_horizontal + i] = NAVIO;
+    }
+
+    // Posicionamento do navio diagonal principal (\)
+    int x_diag1 = 0, y_diag1 = 0;
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[x_diag1 + i][y_diag1 + i] = NAVIO;
+    }
+
+    // Posicionamento do navio diagonal secundária (/)
+    int x_diag2 = 0, y_diag2 = 9;
+    for (int i = 0; i < TAMANHO_NAVIO; i++) {
+        tabuleiro[x_diag2 + i][y_diag2 - i] = NAVIO;
+    }
+
+    // Exibição do tabuleiro completo
+    printf("Tabuleiro de Batalha Naval (0 = água, 3 = navio):\n\n");
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
